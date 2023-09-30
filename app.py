@@ -13,9 +13,13 @@ from models.disaster import DisasterReport
 from models.user import User
 
 app = FastAPI()
+# client = motor.motor_asyncio.AsyncIOMotorClient(
+#     os.environ["MONGODB_URL"], tlsCAfile=certifi.where()
+# )
 client = motor.motor_asyncio.AsyncIOMotorClient(
-    os.environ["MONGODB_URL"], tlsCAfile=certifi.where()
+    "mongodb+srv://Naad:naad2002@cluster0.7redvzp.mongodb.net/", tlsCAfile=certifi.where()
 )
+
 db = client.hacks8
 
 
