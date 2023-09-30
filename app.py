@@ -29,9 +29,9 @@ async def start_database():
     await init_beanie(database=db, document_models=[User, DisasterReport, Announcement])
 
 
-app.include_router(routes.login.router, tags=["login"], prefix="/admin")
-app.include_router(routes.report.router, tags=["login"], prefix="/admin")
-app.include_router(routes.announce.router, tags=["login"], prefix="/admin")
+app.include_router(routes.login.router, tags=["login"], prefix="/auth")
+app.include_router(routes.report.router, tags=["report"], prefix="/disaster")
+app.include_router(routes.announce.router, tags=["announe"], prefix="/announcement")
 
 if __name__ == "__main__":
     uvicorn.run(app=app, host="0.0.0.0", port=80)
