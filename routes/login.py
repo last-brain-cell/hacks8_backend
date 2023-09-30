@@ -3,7 +3,6 @@ from models.user import User, UserSignIn, UserData
 
 router = APIRouter()
 
-
 @router.post("/login", response_model=UserData)
 async def login(login_creds: UserSignIn = Body(...)):
     # print(login_creds)

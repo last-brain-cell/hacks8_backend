@@ -1,34 +1,32 @@
-from typing import List
+from typing import List, Tuple
+
+import pymongo
 from beanie import Document, Link
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from models.user import User
 
+class GeoObject(BaseModel):
+    type: str = "Point"
+    coordinates: Tuple[float, float]
 
 class DisasterReport(Document):
     disaster_id: str
     disaster_type: str
-    location: str
+    location: GeoObject
     date: str
     description: str
-    user: Link[User]
-    verified: bool
+    user: EmailStr
+    verified: bool = False
 
     class Settings:
-        name = "disaster_report"
-
-
-class DisasterReportCreate(BaseModel):
-    disaster_type: str
-    location: List[float]
-    date: str
-    description: str
-    reporter_id: str
+        name = "disaster"
+        indexes = [
+            [("location", pymongo.GEOSPHERE)],  # GEO index
+        ]
 
 
 class DisasterReportVerify(BaseModel):
     disaster_id: str
-    verified: bool
-
 
 class DisasterReportData(BaseModel):
     disaster_id: str

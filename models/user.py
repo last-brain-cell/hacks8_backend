@@ -1,5 +1,5 @@
 from beanie import Document
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
 
 class User(Document):
@@ -19,5 +19,5 @@ class UserSignIn(BaseModel):
 
 class UserData(BaseModel):
     fullname: str
-    email: str
+    email: EmailStr
     role: str
