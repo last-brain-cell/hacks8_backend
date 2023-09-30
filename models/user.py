@@ -1,8 +1,7 @@
 from typing import Optional, Any
-
 from beanie import Document
-from fastapi.security import HTTPBasicCredentials
 from pydantic import BaseModel, EmailStr
+from fastapi.security import HTTPBasicCredentials
 
 
 class User(Document):
