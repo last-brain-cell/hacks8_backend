@@ -2,6 +2,7 @@ import os
 
 import certifi
 import motor.motor_asyncio
+import uvicorn
 from beanie import init_beanie
 from fastapi import FastAPI
 
@@ -31,3 +32,6 @@ async def start_database():
 app.include_router(routes.login.router, tags=["login"], prefix="/admin")
 app.include_router(routes.report.router, tags=["login"], prefix="/admin")
 app.include_router(routes.announce.router, tags=["login"], prefix="/admin")
+
+if __name__ == "__main__":
+    uvicorn.run(app=app, host="0.0.0.0", port=80)
