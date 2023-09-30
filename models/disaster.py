@@ -1,6 +1,8 @@
+from typing import List
+
 from beanie import Document, Link
 from pydantic import BaseModel
-from typing import List, Optional
+
 from models.user import User
 
 
@@ -11,7 +13,7 @@ class DisasterReport(Document):
     date: str
     description: str
     user: Link[User]
-    verified: False
+    verified: bool
 
     class Settings:
         name = "disaster_report"
@@ -27,7 +29,7 @@ class DisasterReportCreate(BaseModel):
 
 class DisasterReportVerify(BaseModel):
     disaster_id: str
-    verified: True
+    verified: bool
 
 
 class DisasterReportData(BaseModel):

@@ -1,12 +1,10 @@
-from typing import Optional, Any
 from beanie import Document
-from pydantic import BaseModel
-from fastapi.security import HTTPBasicCredentials
+from pydantic import BaseModel, EmailStr
 
 
 class User(Document):
     fullname: str
-    email: str
+    email: EmailStr
     password: str
     role: str
 
@@ -15,11 +13,11 @@ class User(Document):
 
 
 class UserSignIn(BaseModel):
-    email: str
+    email: EmailStr
     password: str
 
 
 class UserData(BaseModel):
     fullname: str
-    email: str
+    email: EmailStr
     role: str
