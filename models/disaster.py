@@ -21,7 +21,7 @@ class DisasterReport(Document):
 
 class DisasterReportCreate(BaseModel):
     disaster_type: str
-    location: List[str]
+    location: List[float]
     date: str
     description: str
     reporter_id: str
