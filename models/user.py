@@ -1,10 +1,10 @@
 from beanie import Document
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 
 
 class User(Document):
     fullname: str
-    email: EmailStr
+    email: str
     password: str
     role: str
 
@@ -13,11 +13,11 @@ class User(Document):
 
 
 class UserSignIn(BaseModel):
-    email: EmailStr
+    email: str
     password: str
 
 
 class UserData(BaseModel):
     fullname: str
-    email: EmailStr
+    email: str
     role: str
