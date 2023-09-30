@@ -34,4 +34,4 @@ app.include_router(routes.report.router, tags=["report"], prefix="/disaster")
 app.include_router(routes.announce.router, tags=["announe"], prefix="/announcement")
 
 if __name__ == "__main__":
-    uvicorn.run(app=app, host="0.0.0.0", port=80)
+    uvicorn.run(app=app, host="0.0.0.0", port=80, reload=True)

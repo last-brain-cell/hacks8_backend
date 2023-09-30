@@ -13,7 +13,7 @@ async def create_disaster_report(disaster_report: DisasterReport = Body(...)):
         raise HTTPException(status_code=401, detail="Unexpected Error")
 
 
-@router.post("/report", response_model=DisasterReportData)
+@router.post("/verify_report", response_model=DisasterReportData)
 async def verify_disaster(disaster: DisasterReportVerify = Body(...)):
     disaster_exists = await DisasterReport.find_one(DisasterReport.disaster_id == disaster.disaster_id)
     if disaster_exists:
