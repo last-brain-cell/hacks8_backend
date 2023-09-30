@@ -1,7 +1,7 @@
 from beanie import Document, Link
 from pydantic import BaseModel
 from typing import List, Optional
-from user import User
+from models.user import User
 
 
 class DisasterReport(Document):

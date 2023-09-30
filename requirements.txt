@@ -2,5 +2,4 @@ certifi~=2023.7.22
 motor~=3.3.1
 beanie~=1.22.6
 fastapi~=0.103.2
-mangum~=0.17.0
 pydantic~=2.4.2
