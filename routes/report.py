@@ -3,7 +3,6 @@ from fastapi import Body, APIRouter, HTTPException
 from models.disaster import (
     DisasterReport,
     DisasterReportVerify,
-    VerifiedDisasters,
 )
 
 router = APIRouter()
@@ -29,8 +28,7 @@ async def update_disaster_status(disaster: DisasterReportVerify = Body(...)):
     return disaster_exists
 
 
-@router.post("/display_disasters", response_model=VerifiedDisasters)
+@router.post("/display_disasters")
 async def display_disasters():
-    async for result in DisasterReport.find(DisasterReport.status > 0):
-        print(result)
-    return "200"
+    disasters = await DisasterReport.find(DisasterReport.status > 0).to_list()
+    return disasters
