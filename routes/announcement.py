@@ -21,7 +21,7 @@ async def get_nearby_users_for_disaster(
         ..., description="The ID of the disaster for which to find nearby users"
     )
 ):
-    disaster = await DisasterReport.get(disaster_id)
+    disaster = await DisasterReport.find_one(DisasterReport.disaster_id == disaster_id)
     if not disaster:
         raise HTTPException(status_code=404, detail="Disaster not found")
 
