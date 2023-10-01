@@ -1,13 +1,10 @@
-from beanie import Document, Link
-
-from models.disaster import DisasterReport
-from models.user import User
+from beanie import Document
 
 
 class Announcement(Document):
-    user: Link[User]
+    user: str
     message: str
-    event: Link[DisasterReport]
+    event_id: int
 
     class Settings:
         name = "announcement"

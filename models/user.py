@@ -1,5 +1,13 @@
+from typing import Tuple, Optional
+
+import pymongo
 from beanie import Document
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
+
+
+class GeoObject(BaseModel):
+    type: str = "Point"
+    coordinates: Tuple[float, float]
 
 
 class User(Document):
@@ -7,9 +15,13 @@ class User(Document):
     email: str
     password: str
     role: str
+    location: Optional[GeoObject] = None
 
     class Settings:
         name = "user"
+        indexes = [
+            [("location", pymongo.GEOSPHERE)],  # GEO index
+        ]
 
 
 class UserSignIn(BaseModel):
@@ -19,5 +31,10 @@ class UserSignIn(BaseModel):
 
 class UserData(BaseModel):
     fullname: str
-    email: EmailStr
+    email: str
     role: str
+
+
+class UserLocationUpdate(BaseModel):
+    email: str
+    location: GeoObject
