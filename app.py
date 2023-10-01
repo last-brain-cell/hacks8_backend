@@ -2,9 +2,10 @@ import certifi
 import motor.motor_asyncio
 import uvicorn
 from beanie import init_beanie
-from fastapi import FastAPI, WebSocket
+from fastapi import FastAPI
 
 import routes.announcement
+import routes.disaster
 import routes.login
 import routes.report
 import routes.user
@@ -46,6 +47,7 @@ class ConnectionManager:
 @app.websocket("/ws/{client_id}")
 def websocket_endpoint():
     pass
+
 
 
 @app.on_event("startup")

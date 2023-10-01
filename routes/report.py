@@ -1,17 +1,23 @@
 from fastapi import Body, APIRouter, HTTPException
 
-from models.disaster import DisasterReport, DisasterReportVerify
+from models.disaster import (
+    DisasterReport,
+    DisasterReportVerify,
+    VerifiedDisasters,
+)
 
 router = APIRouter()
 
 
 @router.post("/report", response_model=DisasterReport)
 async def create_disaster_report(disaster_report: DisasterReport = Body(...)):
+    print(disaster_report)
     return await disaster_report.create()
 
 
 @router.post("/update_status", response_model=DisasterReport)
 async def update_disaster_status(disaster: DisasterReportVerify = Body(...)):
+    print(disaster)
     disaster_exists = await DisasterReport.find_one(
         DisasterReport.disaster_id == disaster.disaster_id
     )

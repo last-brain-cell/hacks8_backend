@@ -2,7 +2,7 @@ from typing import List, Tuple
 
 import pymongo
 from beanie import Document
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 
 
 class GeoObject(BaseModel):
@@ -16,7 +16,7 @@ class DisasterReport(Document):
     location: GeoObject
     date: str
     description: str
-    user: EmailStr
+    user: List[str]
     status: int = 0
 
     class Settings:
@@ -31,19 +31,10 @@ class DisasterReportVerify(BaseModel):
     status: int
 
 
-class DisasterReportData(BaseModel):
-    disaster_id: int
-    disaster_type: str
-    location: str
-    date: str
-    description: str
-    reporter_id: str
-
-
 class UserDisasterData(BaseModel):
-    user: EmailStr
-    disaster: DisasterReportData
+    user: str
+    disaster: DisasterReport
 
 
-class UserReportedDisasters(BaseModel):
-    disasters: List[DisasterReportData]
+class VerifiedDisasters(BaseModel):
+    disasters: List[DisasterReport]
