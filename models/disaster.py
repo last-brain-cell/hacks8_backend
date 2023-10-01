@@ -1,5 +1,7 @@
+import datetime
+import random
 from typing import List, Tuple
-import datetime as dt
+
 import pymongo
 from beanie import Document
 from pydantic import BaseModel
@@ -11,12 +13,12 @@ class GeoObject(BaseModel):
 
 
 class DisasterReport(Document):
-    disaster_id: int
+    disaster_id: int = random.randint(0, 1000000000)
     disaster_type: str
     location: GeoObject
-    timestamp: dt.datetime
+    timestamp: datetime.datetime = datetime.datetime.now()
     description: str
-    user: List[str]
+    user: str
     status: int = 0
 
     class Settings:
@@ -38,5 +40,3 @@ class UserDisasterData(BaseModel):
 
 class VerifiedDisasters(BaseModel):
     disasters: List[DisasterReport]
-
-

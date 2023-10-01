@@ -33,6 +33,7 @@ class UserData(BaseModel):
     fullname: str
     email: str
     role: str
+    location: Optional[GeoObject] = None
 
 
 class UserLocationUpdate(BaseModel):
