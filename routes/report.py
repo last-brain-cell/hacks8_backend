@@ -1,4 +1,6 @@
+from beanie.odm.operators.find.geospatial import Near
 from fastapi import Body, APIRouter, HTTPException
+from models.user import UserLocationUpdate
 
 from models.disaster import (
     DisasterReport,

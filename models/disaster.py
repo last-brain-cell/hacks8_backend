@@ -1,5 +1,5 @@
 from typing import List, Tuple
-
+import datetime as dt
 import pymongo
 from beanie import Document
 from pydantic import BaseModel
@@ -14,7 +14,7 @@ class DisasterReport(Document):
     disaster_id: int
     disaster_type: str
     location: GeoObject
-    date: str
+    timestamp: dt.datetime
     description: str
     user: List[str]
     status: int = 0
@@ -38,3 +38,5 @@ class UserDisasterData(BaseModel):
 
 class VerifiedDisasters(BaseModel):
     disasters: List[DisasterReport]
+
+
