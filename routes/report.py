@@ -22,8 +22,15 @@ async def update_disaster_status(disaster: DisasterReportVerify = Body(...)):
         DisasterReport.disaster_id == disaster.disaster_id
     )
     if disaster_exists:
-        disaster_exists.verified = disaster.status
+        disaster_exists.status = disaster.status
         await disaster_exists.save()
     else:
         HTTPException(status_code=404, detail="Disaster doesn't exist")
     return disaster_exists
+
+
+@router.post("/display_disasters", response_model=VerifiedDisasters)
+async def display_disasters():
+    async for result in DisasterReport.find(DisasterReport.status > 0):
+        print(result)
+    return "200"
